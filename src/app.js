@@ -15,3 +15,14 @@ app.use((err, req, res, next) => {
 module.exports = {app};
 
 
+/* const express = require('express');
+const bodyParser = require('body-parser');
+const {route} = require('./controller/user.controller.js');
+
+let app = express();
+app.use(bodyParser.json());
+
+app.use("/user", route);
+
+module.exports = {app}; */
+
