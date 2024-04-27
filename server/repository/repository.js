@@ -1,6 +1,6 @@
 const pool = require('../db')
 
-async function getFriomDB(){
+async function getUserByIdDB(id){
     const client = await pool.connect();
     const sql = `SELECT author, title, price
     from book
@@ -11,3 +11,12 @@ async function getFriomDB(){
     const result = await client.query(sql,[]);
     return result;
 }
+
+async function getAllUsersDB(){
+    const client = await pool.connect();
+    const sql = `SELECT * FROM users`;
+    const result = (await client.query(sql)).rows
+    return result;
+}
+
+module.exports = {getAllUsersDB, getUserByIdDB}
