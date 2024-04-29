@@ -1,0 +1,50 @@
+const express = require("express")
+const routeUser = express.Router();
+const api = express.Router();
+
+
+routeUser.post('', async (req,res)=>{
+    try {
+
+    } catch (error) {
+
+    }
+})
+
+routeUser.post('/', async (req, res)=>{
+    try {
+
+    } catch (error) {
+
+    }
+})
+routeUser.get('/', async (req, res)=>{
+    try {
+
+    } catch (error) {
+
+    }
+})
+routeUser.get('/:id', async (req, res)=>{
+    try {
+
+    } catch (error) {
+
+    }
+})
+routeUser.put('', async (req, res)=>{
+    try {
+
+    } catch (error) {
+        res.send(error.message);
+    }
+})
+routeUser.delete('', async (req, res)=>{
+    try {
+
+    } catch (error) {
+
+    }
+})
+
+module.exports = {routeUser}
