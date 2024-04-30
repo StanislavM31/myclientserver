@@ -18,5 +18,11 @@ async function getAllUsersDB(){
     const result = (await client.query(sql)).rows
     return result;
 }
+async function getUserByEmailDB(email){
+    const client = await pool.connect();
+    const sql = `SELECT * FROM users WHERE email=$1`;
+    const result = (await client.query(sql, [email])).rows
+    return result;
+}
 
-module.exports = {getAllUsersDB, getUserByIdDB}
+module.exports = {getAllUsersDB, getUserByIdDB, getUserByEmailDB}

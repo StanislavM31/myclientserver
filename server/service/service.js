@@ -1,22 +1,17 @@
+const {getAllUsersDB, getUserByIdDB, getUserByEmailDB} = require("../repository/repository")
 
-async function createUser(){
 
-}
+
 async function getAllUsers(){
 
 }
 async function getUserById(){
 
 }
-async function updateUserById(){
 
-}
-async function deleteUserById(){
-
-}
 
 async function authorization(){
 
 }
 
-module.exports = {}
+module.exports = {getAllUsers, getUserById, authorization}
