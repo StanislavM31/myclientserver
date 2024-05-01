@@ -1,6 +1,6 @@
 const express = require ('express');
 const bodyParser = require('body-parser');
-const user = require("./controller/user.controller")
+const user = require("./controller/controller")
 
 const app = express();
 
@@ -12,4 +12,4 @@ app.use((err, req, res, next) => {
     res.send(err.message);
 })
 
-module.exports = {app};
+module.exports = app;
