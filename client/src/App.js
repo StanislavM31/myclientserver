@@ -32,6 +32,13 @@ function App() {
 
   function sendData() {
     console.log(value);
+    setValue({ name: "", email: "", password: "" })
+    console.log(value);
+/*     let egg = value;
+    egg.name ="mutation";
+    console.log(egg==value);
+    console.log(egg===value); */
+    //мутация исходного обьекта
   }
 
   return (
