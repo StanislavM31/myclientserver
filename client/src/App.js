@@ -23,6 +23,7 @@ import { useState } from "react";
   );
 } */
 
+
 function App() {
   const [value, setValue] = useState({ name: "", email: "", password: "" });
 
@@ -36,6 +37,7 @@ function App() {
     console.log("value", value);
   }
 
+  
 /*   function showme() {
     console.log(value);
     //https://habr.com/ru/companies/ruvds/articles/445276/
