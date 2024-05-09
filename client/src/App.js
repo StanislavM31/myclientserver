@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import {useState} from "react";
+import { useState } from "react";
 
 /* function App() {
   return (
@@ -32,14 +32,14 @@ function App() {
 
   function sendData() {
     console.log(value);
-    setValue({ name: "", email: "", password: "" })
-    console.log(value);
-/*     let egg = value;
-    egg.name ="mutation";
-    console.log(egg==value);
-    console.log(egg===value); */
-    //мутация исходного обьекта
+    setValue({ ...value, name: "", email: "", password: "" });
+    console.log("value", value);
   }
+
+/*   function showme() {
+    console.log(value);
+    //https://habr.com/ru/companies/ruvds/articles/445276/
+  } */
 
   return (
     <div className="App">
@@ -68,6 +68,9 @@ function App() {
         <div className="btn" onClick={sendData}>
           send
         </div>
+{/*         <div className="btn" onClick={showme}>
+          show
+        </div> */}
       </header>
     </div>
   );
