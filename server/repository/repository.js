@@ -20,4 +20,4 @@ async function getUserByEmailDB(email){
     return result;
 }
 
-module.exports = {getAllUsersDB, createUserDB}
+module.exports = {getAllUsersDB, createUserDB, getUserByEmailDB}

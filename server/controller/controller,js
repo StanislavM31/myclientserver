@@ -1,7 +1,7 @@
 const express = require("express")
 const routeUser = express.Router();
 const api = express.Router();
-const {getAllUsers, createUser} = require("../service/service.js");
+const {getAllUsers, createUser, getUserByEmail} = require("../service/service.js");
 
 routeUser.get('/', async (req, res)=>{
     try {
@@ -22,32 +22,13 @@ routeUser.post('/', async (req,res)=>{
 })
 routeUser.get('/', async (req, res)=>{
     try {
-
+        const{email} = req.body;
+        const data = await getUserByEmail(email);
+        res.send(data)
     } catch (error) {
-
+        res.send(error);
     }
 })
 
-routeUser.post('/', async (req, res)=>{
-    try {
-
-    } catch (error) {
-
-    }
-})
-routeUser.put('', async (req, res)=>{
-    try {
-
-    } catch (error) {
-        res.send(error.message);
-    }
-})
-routeUser.delete('', async (req, res)=>{
-    try {
-
-    } catch (error) {
-
-    }
-})
 
 module.exports = {routeUser}
