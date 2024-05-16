@@ -35,4 +35,4 @@ async function registerUser(name, email, password) {
   }
 
 
-module.exports = {getAllUsersDB, createUserDB}
+module.exports = {getAllUsersDB, createUserDB, getUserByEmailDB}
