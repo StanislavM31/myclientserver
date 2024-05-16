@@ -16,4 +16,4 @@ async function authorization(){
 
 }
 
-module.exports = {getAllUsers, createUser}
+module.exports = {getAllUsers, createUserDB}
