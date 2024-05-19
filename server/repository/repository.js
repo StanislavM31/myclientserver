@@ -24,15 +24,34 @@ const path = '../storage/storage.json';
 const fs = require('fs');
 const { v1: uuidv1 } = require('uuid');
 
-async function registerUser(name, email, password) {
+function createUserLocalDB(name, email, password) {
     const storage = JSON.parse(readFileSync(path));
   
     const found = storage.find(el => el.email === user.email) ?? null;
-    if (found) throw new HttpException(400, ExceptionType.USER_AUTH_ALREADY_EXISTS);
+    if (found) throw new Error("attempt failed");
  
-    storage.push({ id: uuid.v1(), ...user, pwd: hashed });
+    storage.push({ id: uuid.v1(), name: name, email: email, pwd: password });
     writeFileSync(path, JSON.stringify(storage));
   }
 
+function getAllUsersLocalDB() {
+    const storage = JSON.parse(readFileSync(path));
+    console.log(storage);
+    if (!storage.length) throw new Error("DB is empty");
+    return storage;
+  }
+function deleteUserLocalDB(id) {
+    const storage = JSON.parse(readFileSync(path));
 
-module.exports = {getAllUsersDB, createUserDB, getUserByEmailDB}
+    const filtered = storage.filter(el => el.id !== id);
+    if (storage.length === filtered.length) throw new Error("no such user")
+
+    writeFileSync(path, JSON.stringify(filtered));
+  }
+
+
+module.exports = {getAllUsersDB, createUserDB, getUserByEmailDB, 
+    deleteUserLocalDB,
+    getAllUsersLocalDB,
+    createUserLocalDB
+}

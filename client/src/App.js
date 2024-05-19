@@ -31,11 +31,59 @@ function App() {
     setValue({ ...value, [event.target.name]: event.target.value });
   }
 
-  function sendData() {
+/*   function sendData() {
     console.log(value);
     setValue({ ...value, name: "", email: "", password: "" });
     console.log("value", value);
-  }
+
+    fetch('http://localhost:3000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            // Проверяем, является ли ответ JSON
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json(); // Парсим JSON из ответа
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+  } */
+  function sendData() {
+    console.log(value);
+
+    fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(value)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); 
+    })
+    .then(data => {
+        console.log('Success:', data);
+        // работа с полученными данными
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+
+    setValue({ name: "", email: "", password: "" });
+}
+
 
   
 /*   function showme() {

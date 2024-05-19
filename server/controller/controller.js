@@ -13,9 +13,11 @@ routeUser.get('/', async (req, res)=>{
 })
 routeUser.post('/', async (req,res)=>{
     try {
+        console.log("+++")
         const {name, email, password} = req.body;
         const data = await createUser(name, email, password);
         res.send(data)
+        console.log(data)
     } catch (error) {
         res.send(error.message);
     }
