@@ -12,8 +12,9 @@ async function getAllUsers(){
 }
 async function createUser(name, email, password){
     //const data = await createUserDB(name, email, password);
-    const data = await getAllUsersLocalDB(name, email, password);
-    console.log("+++")
+    console.log('service++');
+    console.log(name, email, password);
+    const data = createUserLocalDB(name, email, password);
     return data;
 }
 async function getUserByEmail(email){
@@ -27,4 +28,4 @@ async function authorization(){
 
 }
 
-module.exports = {getAllUsers, createUser, getUserByEmail, }
+module.exports = {getAllUsers, createUser, getUserByEmail }

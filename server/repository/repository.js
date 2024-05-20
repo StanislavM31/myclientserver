@@ -1,3 +1,4 @@
+const { log } = require('console');
 const pool = require('./../db')
 
 
@@ -27,11 +28,12 @@ const { v1: uuidv1 } = require('uuid');
 function createUserLocalDB(name, email, password) {
     const storage = JSON.parse(readFileSync(path));
   
-    const found = storage.find(el => el.email === user.email) ?? null;
-    if (found) throw new Error("attempt failed");
- 
+    //const found = storage.find(el => el.email === user.email) ?? null;
+    //if (found) throw new Error("attempt failed");
+    console.log({ name, email, password });
     storage.push({ id: uuid.v1(), name: name, email: email, pwd: password });
     writeFileSync(path, JSON.stringify(storage));
+    return 'succes';
   }
 
 function getAllUsersLocalDB() {

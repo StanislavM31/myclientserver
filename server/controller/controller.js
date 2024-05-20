@@ -1,9 +1,9 @@
 const express = require("express")
 const routeUser = express.Router();
-const api = express.Router();
 const {getAllUsers, createUser, getUserByEmail} = require("../service/service.js");
 
 routeUser.get('/', async (req, res)=>{
+    console.log("+++")
     try {
         const data = await getAllUsers();
         res.send(data)
@@ -23,6 +23,7 @@ routeUser.post('/', async (req,res)=>{
     }
 })
 routeUser.get('/', async (req, res)=>{
+    console.log("+++")
     try {
         const{email} = req.body;
         const data = await getUserByEmail(email);
