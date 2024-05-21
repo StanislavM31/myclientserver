@@ -12,9 +12,8 @@ async function getAllUsers(){
 }
 async function createUser(name, email, password){
     //const data = await createUserDB(name, email, password);
-    console.log('service++');
-    console.log(name, email, password);
-    const data = createUserLocalDB(name, email, password);
+    console.log('service+++');
+    const data = await createUserLocalDB(name, email, password);
     return data;
 }
 async function getUserByEmail(email){
