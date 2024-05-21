@@ -20,14 +20,51 @@ async function getUserByEmailDB(email){
     return result;
 }
 /* local server json file */
-const path = '../storage/storage.json';
+const path = './storage/storage.json';
 const fs = require('fs');
 const { v1: uuidv1 } = require('uuid');
 
 async function createUserLocalDB(name, email, password) {
-  console.log("repository+++");
-
-  return `User ${name} with ${email} successfully added`;
+    console.log("repository+++");
+    try {
+      const data = {
+        name,
+        email,
+        password
+      };
+      const jsonData = JSON.stringify(data);
+  
+      if (fs.existsSync(path)) {
+        const fileContent = fs.readFileSync(path, 'utf8');
+        try {
+          const dataArray = JSON.parse(fileContent);
+          dataArray.push(data);
+          const updatedContent = JSON.stringify(dataArray, null, 2);
+          fs.writeFileSync(path, updatedContent);
+          /* return dataArray; */ //возвращает весь список
+        } catch (error) {
+          console.error("Ошибка парсинга существующего файла:", error);
+          return {
+            success: false,
+            message: "Error parsing existing file"
+          };
+        }
+      } else {
+        fs.writeFileSync(path, JSON.stringify([data], null, 2));
+      }
+  
+      return {
+        success: true,
+        message: `User ${name} with ${email} successfully added`
+      };
+  
+    } catch (error) {
+      console.log("Данные не записаны:", error);
+      return {
+        success: false,
+        message: "Failed to add user"
+      };
+    }
   }
 
 function getAllUsersLocalDB() {

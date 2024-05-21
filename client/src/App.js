@@ -41,22 +41,17 @@ fetch('http://localhost:3001/user', {
     },
     body: JSON.stringify(value)
 })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json(); 
-    })
-    .then(data => {
-        console.log('Success:', data);
-        // работа с полученными данными
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok ' + response.statusText);
+  }
+  return response.json(); //json
+})
+.then(data => {
+  console.log('Success:', data.message);
+})
 
-
-    setValue({ name: "", email: "", password: "" });
+  setValue({ name: "", email: "", password: "" });
 }
 
 
