@@ -27,14 +27,34 @@ const { v1: uuidv1 } = require('uuid');
 async function createUserLocalDB(name, email, password) {
   console.log("repository+++");
 
-  return `User ${name} with ${email} successfully added`;
-  }
+  const id = uuidv1();
+
+  return `Пользователь ${name} с email ${email} добавлен. Его id: ID ${id}`;
+}
 
 function getAllUsersLocalDB() {
     const storage = JSON.parse(readFileSync(path));
     console.log(storage);
     if (!storage.length) throw new Error("DB is empty");
     return storage;
+  }
+  function updateUserLocalDB(id, name, email, password) {
+    console.log("repository+++");
+    
+    const storage = JSON.parse(readFileSync(path));
+  
+    const updatedStorage = storage.map(user => {
+      if (user.email === id) {
+        user.name = name;
+        user.email = email;
+        user.password = password;
+      }
+      return user;
+    });
+  
+    writeFileSync(path, JSON.stringify(updatedStorage));
+  
+    return `Пользователь ${name} обновлен`;
   }
 function deleteUserLocalDB(id) {
     const storage = JSON.parse(readFileSync(path));
@@ -48,6 +68,7 @@ function deleteUserLocalDB(id) {
 
 module.exports = {getAllUsersDB, createUserDB, getUserByEmailDB, 
     deleteUserLocalDB,
+    updateUserLocalDB,
     getAllUsersLocalDB,
     createUserLocalDB
 }
