@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import style from './style.css'
 
 export function Registration(){
     const [value, setValue] = useState({ name: "", email: "", password: "" });
@@ -60,13 +60,13 @@ fetch('http://localhost:3001/user', {
             onChange={setNewInputValue}
             placeholder="password"
           ></input>
-        </div>
         <div className="btn" onClick={()=> sendData()}>
           send
         </div>
 {/*         <div className="btn" onClick={showme}>
           show
         </div> */}
+        </div>
 
     </div>
   );
