@@ -43,10 +43,10 @@ async function createUserLocalDB(name, email, password) {
           fs.writeFileSync(path, updatedContent);
           /* return dataArray; */ //возвращает весь список
         } catch (error) {
-          console.error("Ошибка парсинга существующего файла:", error);
+          console.error("Ошибка файла", error);
           return {
             success: false,
-            message: "Error parsing existing file"
+            message: "Ошибка: файл не существует"
           };
         }
       } else {
@@ -62,7 +62,7 @@ async function createUserLocalDB(name, email, password) {
       console.log("Данные не записаны:", error);
       return {
         success: false,
-        message: "Failed to add user"
+        message: "Ошибка"
       };
     }
   }
@@ -72,6 +72,24 @@ function getAllUsersLocalDB() {
     console.log(storage);
     if (!storage.length) throw new Error("DB is empty");
     return storage;
+  }
+  function updateUserLocalDB(id, name, email, password) {
+    console.log("repository+++");
+    
+    const storage = JSON.parse(readFileSync(path));
+  
+    const updatedStorage = storage.map(user => {
+      if (user.email === id) {
+        user.name = name;
+        user.email = email;
+        user.password = password;
+      }
+      return user;
+    });
+  
+    writeFileSync(path, JSON.stringify(updatedStorage));
+  
+    return `Пользователь ${name} обновлен`;
   }
 function deleteUserLocalDB(id) {
     const storage = JSON.parse(readFileSync(path));
@@ -85,6 +103,7 @@ function deleteUserLocalDB(id) {
 
 module.exports = {getAllUsersDB, createUserDB, getUserByEmailDB, 
     deleteUserLocalDB,
+    updateUserLocalDB,
     getAllUsersLocalDB,
     createUserLocalDB
 }
