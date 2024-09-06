@@ -3,13 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore, Provider } from "react-redux";
+import { Provider } from "react-redux";
+import {createStore } from "redux";
 
 const defaultState = {
   filled: "all",
 };
-
-action = { type: "", payload: { name, surname, password } };
+const store = createStore(rootReducer)
+action = { type: "", payload: "" };
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case "filled":
@@ -23,7 +24,7 @@ const reducer = (state = defaultState, action) => {
       return state;
   }
 };
-const store = createStore(reducer);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
